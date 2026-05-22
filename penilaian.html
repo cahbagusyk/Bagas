@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lampiran Penilaian | Bagas Reza Purwaka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--bg-white);
+            font-size: 2.5rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .dash-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dash-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .file-preview {
+            background: var(--bg-main);
+            border: 2px dashed var(--text-muted);
+            border-radius: var(--radius-sm);
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .file-preview:hover {
+            border-color: var(--primary);
+            background: rgba(11, 25, 44, 0.05);
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .file-preview i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cycle-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .cycle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .cycle-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .cycle-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .cycle-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .cycle-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(11, 25, 44, 0.9));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .cycle-item:hover .cycle-overlay {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="profil.html">Profil</a></li>
+    <li><a href="analisis.html">Artefak</a></li>
+    <li class="separator">|</li>
+    <li class="separator">|</li>
+    <li><a href="analisis_artefak.html">Analisis</a></li>
+    <li><a href="penilaian.html">Penilaian</a></li>
+    <li><a href="visi.html">Model Guru</a></li>
+</ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container fade-in">
+            <h1>Lampiran Penilaian & Dokumentasi</h1>
+            <p style="color: var(--accent); font-size: 1.2rem; margin-top: 1rem;">Arsip Instrumen dan Bukti Pelaksanaan Mengajar</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Instrumen Penilaian</h2>
+            <div class="dashboard-grid">
+                <!-- Lampiran 7 -->
+                <div class="dash-card fade-in">
+                    <h3><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Lampiran 7</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">Instrumen Penilaian Penyusunan Perangkat Pembelajaran.</p>
+                    <div class="file-preview">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Klik untuk melihat / unggah PDF</span>
+                    </div>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
+                </div>
+
+                <!-- Lampiran 8 -->
+                <div class="dash-card fade-in" style="transition-delay: 0.2s;">
+                    <h3><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Lampiran 8</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">Instrumen Penilaian Praktik Mengajar (Observasi Guru Pamong & DPL).</p>
+                    <div class="file-preview">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Preview Data Penilaian</span>
+                    </div>
+                    <a href="#" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
+                </div>
+            </div>
+
+            <h2 class="section-title fade-in" style="margin-top: 4rem;">Dokumentasi Praktik Mengajar</h2>
+            
+            <div class="cycle-section fade-in">
+                <h3><i class="fa-solid fa-video" style="color: var(--accent); margin-right: 0.5rem;"></i> Siklus 1: Observasi & Pendampingan</h3>
+                <p style="color: var(--text-muted);">Materi: Pengenalan Fitur 2D dan 3D Autodesk Inventor</p>
+                <div class="cycle-grid">
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop" alt="Dokumentasi 1">
+                        <div class="cycle-overlay">Praktik Kalibrasi Jangka Sorong</div>
+                    </div>
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1974&auto=format&fit=crop" alt="Dokumentasi 2">
+                        <div class="cycle-overlay">Diskusi Kelompok</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cycle-section fade-in">
+                <h3><i class="fa-solid fa-video" style="color: var(--accent); margin-right: 0.5rem;"></i> Siklus 2: Pengajaran Terbimbing</h3>
+                <p style="color: var(--text-muted);">Materi: Pembuatan Part 3D Sederhana Autodesk Inventor</p>
+                <div class="cycle-grid">
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="Dokumentasi 3">
+                        <div class="cycle-overlay">Demonstrasi Mesin Bubut</div>
+                    </div>
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" alt="Dokumentasi 4">
+                        <div class="cycle-overlay">Pendampingan Siswa</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cycle-section fade-in">
+                <h3><i class="fa-solid fa-video" style="color: var(--accent); margin-right: 0.5rem;"></i> Siklus 3: Pengajaran Mandiri</h3>
+                <p style="color: var(--text-muted);">Materi: Pembuatan Assembly Autodesk Inventor</p>
+                <div class="cycle-grid">
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Dokumentasi 5">
+                        <div class="cycle-overlay">Proyek Akhir Siswa</div>
+                    </div>
+                    <div class="cycle-item">
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format&fit=crop" alt="Dokumentasi 6">
+                        <div class="cycle-overlay">Presentasi Hasil Produk</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- ... (same footer content) ... -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagas.reza@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

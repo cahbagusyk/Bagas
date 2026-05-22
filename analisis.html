@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Artefak | Bagas Reza Purwaka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--bg-white);
+            font-size: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: rgba(11, 25, 44, 0.1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+
+        /* Timeline Icons */
+        .timeline-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            right: -25px;
+            background-color: var(--bg-white);
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .right .timeline-icon {
+            left: -25px;
+        }
+
+        /* Timeline Content Card */
+        .timeline-content {
+            padding: 2rem;
+            background-color: var(--bg-white);
+            position: relative;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item.right { left: 0; }
+            .timeline-item.left .timeline-icon,
+            .timeline-item.right .timeline-icon { left: 6px; }
+        }
+        /* Document Filtering UI */
+        .filter-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-white);
+            padding: 0.5rem 0.6rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(11, 25, 44, 0.04), 0 1px 8px rgba(11, 25, 44, 0.02);
+            border: 1px solid rgba(11, 25, 44, 0.03);
+            width: fit-content;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            border-radius: 40px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+        }
+
+        .filter-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Filter Siklus Buttons (Navy selected matching image) */
+        #filter-siklus .filter-btn.active {
+            background: var(--primary); /* #0B192C */
+            color: white;
+            box-shadow: 0 4px 12px rgba(11, 25, 44, 0.25);
+        }
+
+        /* Filter Kategori Buttons (Vibrant Blue selected matching image) */
+        #filter-kategori .filter-btn.active {
+            background: #0084ff; /* Vibrant light blue */
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 132, 255, 0.25);
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .doc-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .doc-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), #1a365d);
+            padding: 2.5rem 1.5rem;
+            color: white;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Abstract shapes in header */
+        .doc-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+                              linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.05) 60%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .badge-kategori {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .doc-header h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            z-index: 1;
+        }
+
+        .doc-header .siklus-label {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .doc-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .doc-body h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .doc-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Premium Interactive 1-Place Upload Zone */
+        .upload-container {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .card-upload-zone {
+            border: 2px dashed rgba(11, 25, 44, 0.15);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            background: rgba(11, 25, 44, 0.01);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            position: relative;
+        }
+
+        .card-upload-zone:hover, .card-upload-zone.dragover {
+            border-color: #0084ff;
+            background: rgba(0, 132, 255, 0.04);
+            color: #0084ff;
+        }
+
+        .card-upload-zone i {
+            font-size: 2rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .card-upload-zone:hover i {
+            color: #0084ff;
+            transform: translateY(-3px);
+        }
+
+        .card-upload-zone span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-upload-zone .upload-info {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Styling for uploaded files */
+        .uploaded-file-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0, 132, 255, 0.05);
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 132, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .uploaded-file-icon {
+            font-size: 1.6rem;
+            color: #0084ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .uploaded-file-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .uploaded-file-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .uploaded-file-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .btn-action-file {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-white);
+            color: var(--text-muted);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-action-file:hover {
+            color: white;
+        }
+
+        .btn-action-file.btn-view:hover {
+            background: #0084ff;
+            border-color: #0084ff;
+            color: white !important;
+        }
+
+        .btn-action-file.btn-delete:hover {
+            background: #d63031;
+            border-color: #d63031;
+            color: white !important;
+        }
+
+        /* Upload progress animation */
+        .upload-progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(11, 25, 44, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .upload-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #0084ff;
+            transition: width 0.1s linear;
+        }
+
+        /* Utility class to hide elements */
+        .doc-card.hidden {
+            display: none !important;
+        }
+
+        /* Image Cover Styles */
+        .doc-header img {
+            transition: transform 0.5s ease;
+        }
+
+        .doc-card:hover .doc-header img {
+            transform: scale(1.08);
+        }
+
+        .doc-card:hover .doc-header img {
+            transform: scale(1.08);
+        }
+
+        /* Analysis Grid & Cards */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .analysis-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .analysis-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(11, 25, 44, 0.05);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .analysis-card:hover .analysis-icon {
+            transform: scale(1.15) rotate(5deg);
+            background: var(--accent);
+            color: var(--bg-white);
+        }
+
+        .analysis-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .analysis-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .file-upload-box {
+            width: 100%;
+            background: var(--bg-main);
+            border: 2px dashed rgba(11, 25, 44, 0.15);
+            border-radius: var(--radius-md);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .file-upload-box:hover {
+            border-color: var(--primary);
+            background: rgba(11, 25, 44, 0.04);
+            color: var(--primary);
+        }
+
+        .file-upload-box i {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .file-upload-box:hover i {
+            transform: translateY(-4px);
+        }
+
+        .file-upload-box span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="analisis.html" class="active">Artefak</a></li>
+                <li><a href="analisis_artefak.html">Analisis</a></li>
+                <li><a href="penilaian.html">Penilaian</a></li>
+                <li><a href="visi.html">Model Guru</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container fade-in">
+            <h1>Analisis Artefak Rencana & Perangkat Pembelajaran</h1>
+            <p style="color: var(--accent); font-size: 1.2rem; margin-top: 1rem;">Refleksi Kritis Pelaksanaan Pembelajaran Teknik Mesin</p>
+        </div>
+    </header>
+
+    <!-- Upload Artefak Section -->
+    <section class="section" style="background-color: var(--bg-main); padding-top: 2rem;">
+        <div class="container">
+            <div class="text-center fade-in" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;">Karya & Dokumentasi</h2>
+                <p style="color: var(--text-muted);">Koleksi perangkat pembelajaran, media, dan dokumentasi kegiatan profesional</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="filter-section fade-in">
+                <!-- Filter Siklus -->
+                <div class="filter-group" id="filter-siklus">
+                    <button class="filter-btn active" data-filter="semua">Semua</button>
+                    <button class="filter-btn" data-filter="siklus-1">Siklus 1</button>
+                    <button class="filter-btn" data-filter="siklus-2">Siklus 2</button>
+                    <button class="filter-btn" data-filter="siklus-3">Siklus 3</button>
+                </div>
+                <!-- Filter Kategori -->
+                <div class="filter-group" id="filter-kategori">
+                    <button class="filter-btn active" data-filter="semua">Semua</button>
+                    <button class="filter-btn" data-filter="rpp">RPP</button>
+                    <button class="filter-btn" data-filter="materi">Materi</button>
+                    <button class="filter-btn" data-filter="lkm">LKM</button>
+                    <button class="filter-btn" data-filter="media">Media</button>
+                    <button class="filter-btn" data-filter="asesmen">Asesmen</button>
+                    <button class="filter-btn" data-filter="lainnya">Lainnya</button>
+                </div>
+            </div>
+
+            <!-- Documents Grid -->
+            <div class="doc-grid" id="doc-grid">
+                <!-- LOOP SIKLUS 1 -->
+                <!-- RPP Siklus 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="rpp">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">RPP</span>
+                        <img src="https://drive.google.com/thumbnail?id=1DhIn2NgDE_wmEhnNJyemeL1lya6egI3-&sz=w600" alt="Cover Modul Ajar Siklus 1" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Modul Ajar Siklus 1</h4>
+                        <p>Dokumen RPP/Modul Ajar lengkap untuk pelaksanaan pembelajaran Siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Modul_Ajar_Siklus_1.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1DhIn2NgDE_wmEhnNJyemeL1lya6egI3-/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materi 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="materi">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">Materi</span>
+                        <img src="https://drive.google.com/thumbnail?id=1cZlnkdE7_BCVa9YoPBZKmv_h96fgaY4B&sz=w600" alt="Cover Materi Pembelajaran S1" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Materi Pembelajaran S1</h4>
+                        <p>Buku ajar, handout, atau presentasi materi (PPT) yang digunakan selama siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Materi_Pembelajaran_S1.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1cZlnkdE7_BCVa9YoPBZKmv_h96fgaY4B/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LKM 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="lkm">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#00b894;">LKM</span>
+                        <img src="https://drive.google.com/thumbnail?id=1T2q_X5jhbgdrbxszOAuLZyHT0AGbb2ZD&sz=w600" alt="Cover Jobsheet & LKM S1" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Jobsheet & LKM S1</h4>
+                        <p>Lembar kerja panduan merakit komponen dan jobsheet praktik siswa siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Jobsheet_LKM_S1.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1T2q_X5jhbgdrbxszOAuLZyHT0AGbb2ZD/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="media">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#0984e3;">Media</span>
+                        <img src="https://drive.google.com/thumbnail?id=1co1k3F6V_K1G_C05cyr3c-lXRVarTaMY&sz=w600" alt="Cover Media Video & Interaktif 1" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Media Video & Interaktif 1</h4>
+                        <p>Dokumentasi video pembelajaran, animasi 3D, atau media pendukung lainnya siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Media_Interaktif_S1.ppt</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://docs.google.com/presentation/d/1co1k3F6V_K1G_C05cyr3c-lXRVarTaMY/edit?usp=sharing&ouid=112677128706717062608&rtpof=true&sd=true" target="_blank" class="btn-action-file btn-view" title="Buka Media di Slides">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asesmen 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="asesmen">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#d63031;">Asesmen</span>
+                        <img src="https://drive.google.com/thumbnail?id=1S6vH-DiGBTcfjQ-48ViLYmux0xREJ2Mg&sz=w600" alt="Cover Rubrik & Soal S1" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Rubrik & Soal S1</h4>
+                        <p>Kisi-kisi, instrumen penilaian kognitif, afektif, dan psikomotorik siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Rubrik_Soal_S1.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1S6vH-DiGBTcfjQ-48ViLYmux0xREJ2Mg/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lainnya 1 -->
+                <div class="doc-card" data-siklus="siklus-1" data-kategori="lainnya">
+                    <div class="doc-header" style="background: linear-gradient(135deg, #6c5ce7, #4834d4);">
+                        <span class="badge-kategori" style="background:#6c5ce7;">Lainnya</span>
+                        <h3>DOKUMEN PENDUKUNG</h3>
+                        <span class="siklus-label">Siklus 1</span>
+                    </div>
+                    <div class="doc-body">
+                        <h4>Dokumen Lain-lain S1</h4>
+                        <p>Daftar hadir, jurnal guru, refleksi, atau dokumentasi tambahan lainnya siklus 1.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="card-upload-zone">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOOP SIKLUS 2 -->
+                <!-- RPP Siklus 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="rpp">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">RPP</span>
+                        <img src="https://drive.google.com/thumbnail?id=19EVaqjQuvdOBMaUPHuZi9caXC-9-2Kva&sz=w600" alt="Cover Modul Ajar Siklus 2" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Modul Ajar Siklus 2</h4>
+                        <p>Dokumen RPP/Modul Ajar lengkap untuk pelaksanaan pembelajaran Siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Modul_Ajar_Siklus_2.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/19EVaqjQuvdOBMaUPHuZi9caXC-9-2Kva/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materi 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="materi">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">Materi</span>
+                        <img src="assets/materi-s2-folder.png" alt="Cover Folder Materi Pembelajaran S2" style="width: 100%; height: 180px; object-fit: cover; object-position: center;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Materi Pembelajaran S2</h4>
+                        <p>Folder Google Drive berisi buku ajar, handout, atau presentasi materi (PPT) siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-folder-open"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Materi_Pembelajaran_S2</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/drive/folders/1ktRO31gCqp1HAvEcF0zyVH42qKM4xKlt?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka Folder di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LKM 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="lkm">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#00b894;">LKM</span>
+                        <img src="https://drive.google.com/thumbnail?id=1YFt-CN4K_Jv0U5lbfrIJxjdUbx2IhuDS&sz=w600" alt="Cover Jobsheet & LKM S2" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Jobsheet & LKM S2</h4>
+                        <p>Lembar kerja panduan merakit komponen dan jobsheet praktik siswa siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Jobsheet_LKM_S2.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1YFt-CN4K_Jv0U5lbfrIJxjdUbx2IhuDS/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="media">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#0984e3;">Media</span>
+                        <img src="https://drive.google.com/thumbnail?id=1jNXSnH80xmOghjsMKKf57VWr_KHxGXFM&sz=w600" alt="Cover Media Video & Interaktif 2" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Media Video & Interaktif 2</h4>
+                        <p>Dokumentasi video pembelajaran, animasi 3D, atau media pendukung lainnya siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Media_Interaktif_S2.ppt</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://docs.google.com/presentation/d/1jNXSnH80xmOghjsMKKf57VWr_KHxGXFM/edit?usp=sharing&ouid=112677128706717062608&rtpof=true&sd=true" target="_blank" class="btn-action-file btn-view" title="Buka Media di Slides">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asesmen 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="asesmen">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#d63031;">Asesmen</span>
+                        <img src="https://drive.google.com/thumbnail?id=1mfBxj6aw4SYM1RjiV67nkXL2MSsJf0B0&sz=w600" alt="Cover Rubrik & Soal S2" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Rubrik & Soal S2</h4>
+                        <p>Kisi-kisi, instrumen penilaian kognitif, afektif, dan psikomotorik siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Rubrik_Soal_S2.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1mfBxj6aw4SYM1RjiV67nkXL2MSsJf0B0/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lainnya 2 -->
+                <div class="doc-card" data-siklus="siklus-2" data-kategori="lainnya">
+                    <div class="doc-header" style="background: linear-gradient(135deg, #6c5ce7, #4834d4);">
+                        <span class="badge-kategori" style="background:#6c5ce7;">Lainnya</span>
+                        <h3>DOKUMEN PENDUKUNG</h3>
+                        <span class="siklus-label">Siklus 2</span>
+                    </div>
+                    <div class="doc-body">
+                        <h4>Dokumen Lain-lain S2</h4>
+                        <p>Daftar hadir, jurnal guru, refleksi, atau dokumentasi tambahan lainnya siklus 2.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="card-upload-zone">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOOP SIKLUS 3 -->
+                <!-- RPP Siklus 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="rpp">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">RPP</span>
+                        <img src="https://drive.google.com/thumbnail?id=1nAnPT_QhsfqOajU_bgqOMhhvsO0Hqeed&sz=w600" alt="Cover Modul Ajar Siklus 3" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Modul Ajar Siklus 3</h4>
+                        <p>Dokumen RPP/Modul Ajar lengkap untuk pelaksanaan pembelajaran Siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Modul_Ajar_Siklus_3.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1nAnPT_QhsfqOajU_bgqOMhhvsO0Hqeed/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materi 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="materi">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori">Materi</span>
+                        <img src="https://drive.google.com/thumbnail?id=1Z9tR9lc7iiY6Ud7A9mSasxRHaN7L9CDR&sz=w600" alt="Cover Materi Pembelajaran S3" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Materi Pembelajaran S3</h4>
+                        <p>Buku ajar, handout, atau presentasi materi (PPT) yang digunakan selama siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Materi_Pembelajaran_S3.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1Z9tR9lc7iiY6Ud7A9mSasxRHaN7L9CDR/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LKM 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="lkm">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#00b894;">LKM</span>
+                        <img src="https://drive.google.com/thumbnail?id=1MvAJQBnM-g-Pzd_mhmn433BDw25qVNwk&sz=w600" alt="Cover Jobsheet & LKM S3" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Jobsheet & LKM S3</h4>
+                        <p>Lembar kerja panduan merakit komponen dan jobsheet praktik siswa siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Jobsheet_LKM_S3.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1MvAJQBnM-g-Pzd_mhmn433BDw25qVNwk/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="media">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#0984e3;">Media</span>
+                        <img src="https://drive.google.com/thumbnail?id=1LzRuP_hy7mYmbl29i5CapVGdx99r8t0J&sz=w600" alt="Cover Media Video & Interaktif" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Media Video & Interaktif</h4>
+                        <p>Dokumentasi video pembelajaran, animasi 3D, atau media pendukung lainnya siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Media_Interaktif_S3.ppt</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://docs.google.com/presentation/d/1LzRuP_hy7mYmbl29i5CapVGdx99r8t0J/edit?usp=sharing&ouid=112677128706717062608&rtpof=true&sd=true" target="_blank" class="btn-action-file btn-view" title="Buka Media di Slides">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asesmen 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="asesmen">
+                    <div class="doc-header" style="padding: 0; min-height: 180px; background: #f0f0f0; overflow: hidden;">
+                        <span class="badge-kategori" style="background:#d63031;">Asesmen</span>
+                        <img src="https://drive.google.com/thumbnail?id=1_osg4CWBIa4I5mKkIQ7Ybs8ckDlpX5f3&sz=w600" alt="Cover Rubrik & Soal S3" style="width: 100%; height: 180px; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="doc-body">
+                        <h4>Rubrik & Soal S3</h4>
+                        <p>Kisi-kisi, instrumen penilaian kognitif, afektif, dan psikomotorik siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="uploaded-file-info">
+                                <div class="uploaded-file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="uploaded-file-details">
+                                    <span class="uploaded-file-name">Rubrik_Soal_S3.pdf</span>
+                                </div>
+                                <div class="uploaded-file-actions">
+                                    <a href="https://drive.google.com/file/d/1_osg4CWBIa4I5mKkIQ7Ybs8ckDlpX5f3/view?usp=sharing" target="_blank" class="btn-action-file btn-view" title="Buka PDF di Drive">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    <button class="btn-action-file btn-delete" title="Ganti File">
+                                        <i class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-upload-zone" style="display: none;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lainnya 3 -->
+                <div class="doc-card" data-siklus="siklus-3" data-kategori="lainnya">
+                    <div class="doc-header" style="background: linear-gradient(135deg, #6c5ce7, #4834d4);">
+                        <span class="badge-kategori" style="background:#6c5ce7;">Lainnya</span>
+                        <h3>DOKUMEN PENDUKUNG</h3>
+                        <span class="siklus-label">Siklus 3</span>
+                    </div>
+                    <div class="doc-body">
+                        <h4>Dokumen Lain-lain S3</h4>
+                        <p>Daftar hadir, jurnal guru, refleksi, atau dokumentasi tambahan lainnya siklus 3.</p>
+                        <div class="upload-container">
+                            <input type="file" class="file-input" style="display: none;" accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg">
+                            <div class="card-upload-zone">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih atau Seret File</span>
+                                <span class="upload-info">PDF, DOCX, PPT, atau Gambar</span>
+                                <div class="upload-progress-container">
+                                    <div class="upload-progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Alur Refleksi & Analisis</h2>
+            <p class="section-subtitle fade-in">Berikut adalah pembedahan mendalam mengenai proses penyusunan dan pelaksanaan perangkat pembelajaran selama siklus praktik mengajar.</p>
+ 
+            <div class="analysis-grid fade-in">
+                <!-- Siklus 1 -->
+                <div class="analysis-card" style="border-top-color: var(--primary);">
+                    <div class="analysis-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Analisis Artefak Siklus 1</h3>
+                    <p>Dokumen analisis dan refleksi kritis terhadap pelaksanaan pembelajaran Siklus, mencakup Kendala Penyusunan, Konsep Pedagogi, Faktor Keberhasilan, Penyesuaian untuk Kelas Berbeda</p>
+                    <a href="https://drive.google.com/file/d/1wriDI_it2fwujoeQLEq5T0KJldiB--kY/view?usp=drive_link" class="file-upload-box" target="_blank">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Lihat Analisis S1</span>
+                    </a>
+                </div>
+                
+                <!-- Siklus 2 -->
+                <div class="analysis-card" style="border-top-color: var(--accent);">
+                    <div class="analysis-icon" style="background: rgba(212, 175, 55, 0.1); color: var(--accent);"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Analisis Artefak Siklus 2</h3>
+                    <p>Dokumen analisis dan refleksi kritis terhadap pelaksanaan pembelajaran Siklus, mencakup Kendala Penyusunan, Konsep Pedagogi, Faktor Keberhasilan, Penyesuaian untuk Kelas Berbeda</p>
+                    <a href="https://drive.google.com/file/d/1qqPuNJjXcHRzo7xk2F3Y71mRHen37yGZ/view?usp=sharing" class="file-upload-box" target="_blank">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Lihat Analisis S2</span>
+                    </a>
+                </div>
+
+                <!-- Siklus 3 -->
+                <div class="analysis-card" style="border-top-color: #0984e3;">
+                    <div class="analysis-icon" style="background: rgba(9, 132, 227, 0.1); color: #0984e3;"><i class="fa-solid fa-chart-column"></i></div>
+                    <h3>Analisis Artefak Siklus 3</h3>
+                    <p>Dokumen analisis dan refleksi kritis terhadap pelaksanaan pembelajaran Siklus, mencakup Kendala Penyusunan, Konsep Pedagogi, Faktor Keberhasilan, Penyesuaian untuk Kelas Berbeda</p>
+                     <a href="https://drive.google.com/file/d/10vFvfUjNW8u9UcBeNtOcazZ4y5peULvc/view?usp=sharing" class="file-upload-box" target="_blank">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Lihat Analisis S3</span>
+                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- ... (same footer content) ... -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagas.reza@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

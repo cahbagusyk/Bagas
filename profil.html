@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Mahasiswa | Bagas Reza Purwaka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-header {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .profile-header h1 {
+            color: var(--bg-white);
+            font-size: 3rem;
+        }
+
+        .story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: -3rem;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            /* Warna dinormalkan agar cerah dan tidak pucat */
+            filter: brightness(1.05) contrast(1.05) saturate(1.1);
+            /* Membuat foto tidak kaku dengan bentuk organik (blob) */
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            /* Mengembalikan shadow untuk kedalaman di latar yang terang */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: morph 8s ease-in-out infinite;
+            transition: all 0.5s ease;
+        }
+
+        .story-image:hover {
+            filter: brightness(1.1) contrast(1.1) saturate(1.15);
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+
+        .story-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .story-content h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .motivation-quote {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivation-quote i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+        }
+
+        .motivation-quote p {
+            font-size: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .motivation-quote span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .story-container {
+                grid-template-columns: 1fr;
+            }
+            .story-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+
+        /* Resume / Riwayat Hidup Section */
+        .resume-section {
+            background-color: #f9fafb;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .resume-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed rgba(0,0,0,0.1);
+        }
+
+        .resume-title i {
+            color: var(--accent);
+            font-size: 2rem;
+            animation: bounce-slight 3s infinite ease-in-out;
+        }
+
+        @keyframes bounce-slight {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 4px solid transparent;
+            cursor: default;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -50px; /* Aligns with the 4px line which is 30px to the left */
+            top: 1.5rem;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-white);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-icon {
+            background: var(--accent);
+            color: var(--bg-white);
+            transform: scale(1.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .timeline-content span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content span {
+            background: var(--accent);
+            color: var(--bg-white);
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="analisis.html">Artefak</a></li>
+
+
+                <li><a href="analisis_artefak.html">Analisis</a></li>
+                <li><a href="penilaian.html">Penilaian</a></li>
+                <li><a href="visi.html">Model Guru</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="profile-header">
+        <div class="container fade-in">
+            <h1>Profil Mahasiswa</h1>
+            <p style="color: var(--accent); font-size: 1.2rem; margin-top: 0.5rem;">Mengenal Lebih Dekat Perjalanan & Dedikasi</p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <section class="section">
+        <div class="container">
+            <div class="story-container">
+                <div class="story-content fade-in">
+                    <h2>Jejak Langkah dari Kebumen</h2>
+                    <p>Halo, saya Bagas Reza Purwaka. Lahir dan tumbuh di <strong>Kebumen, Jawa Tengah</strong>, sebuah kota yang tidak hanya kaya akan pesona alamnya, tetapi juga kental dengan nilai-nilai kesederhanaan, gotong royong, dan kerja keras. Budaya inilah yang membentuk karakter saya menjadi pribadi yang pantang menyerah dan selalu ingin berbagi manfaat dengan lingkungan sekitar.</p>
+                    
+                    <p>Ketertarikan saya pada dunia mesin dan teknologi berpadu dengan panggilan jiwa untuk mendidik. Saya menyadari bahwa kemajuan industri harus diimbangi dengan generasi muda yang kompeten dan berkarakter.</p>
+                </div>
+                <!-- Simpan foto yang diunggah sebagai assets/foto-profil.jpeg -->
+                <img src="assets/foto-profil.jpeg" alt="Profil Bagas" class="story-image fade-in" style="transition-delay: 0.2s;">
+            </div>
+
+            <div class="info-cards fade-in" style="transition-delay: 0.4s;">
+                <div class="info-card">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Inspirasi Menjadi Guru</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Melihat potensi besar anak-anak SMK di bidang vokasi yang membutuhkan mentor untuk tidak hanya mengajar teori, tapi juga praktik langsung di dunia industri.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h3>Tujuan Profesional</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Menjadi fasilitator pembelajaran yang adaptif, mengintegrasikan teknologi terkini (Industri 4.0) dalam kelas Teknik Mesin.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Harapan Pendidikan</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Menciptakan ruang kelas yang memerdekakan siswa, di mana kegagalan dalam praktik adalah langkah awal menuju sebuah penemuan besar.</p>
+                </div>
+            </div>
+
+            <div class="motivation-quote fade-in">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>"Seorang guru yang sejati tidak hanya mencetak tenaga kerja terampil, tetapi juga <span>membentuk pemikir kritis</span> yang siap merakit masa depan dengan tangan mereka sendiri."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Riwayat Hidup / Resume Section -->
+    <section class="resume-section section">
+        <div class="container">
+            <div class="section-title text-center fade-in" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; color: var(--primary); position: relative; display: inline-block; padding-bottom: 0.5rem;">Riwayat Hidup
+                    <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--accent); border-radius: 2px;"></span>
+                </h2>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 1.1rem;">Perjalanan Pendidikan & Pengalaman Profesional</p>
+            </div>
+            
+            <div class="resume-container">
+                <!-- Riwayat Pendidikan -->
+                <div class="resume-column fade-in">
+                    <h3 class="resume-title"><i class="fa-solid fa-user-graduate"></i> Riwayat Pendidikan</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><img src="assets/logo-ust.png" alt="Logo UST" style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 50%;"></div>
+                            <div class="timeline-content">
+                                <h4>Universitas Sarjanawiyata Tamansiswa</h4>
+                                <span><i class="fa-solid fa-book-open"></i> Pendidikan Profesi Guru</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><img src="assets/logo-uny.png" alt="Logo UNY" style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 50%;"></div>
+                            <div class="timeline-content">
+                                <h4>Universitas Negeri Yogyakarta</h4>
+                                <span><i class="fa-solid fa-cogs"></i> Teknik Mesin D4</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><img src="assets/logo-smk.jpg" alt="Logo SMK" style="width: 100%; height: 100%; object-fit: contain; padding: 4px; border-radius: 50%;"></div>
+                            <div class="timeline-content">
+                                <h4>SMK Negeri Gombong</h4>
+                                <span><i class="fa-solid fa-wrench"></i> Teknik Mesin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pengalaman Magang -->
+                <div class="resume-column fade-in" style="transition-delay: 0.2s;">
+                    <h3 class="resume-title"><i class="fa-solid fa-briefcase"></i> Pengalaman Magang</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-train"></i></div>
+                            <div class="timeline-content">
+                                <h4>PT. Industri Kereta Api (Persero)</h4>
+                                <span><i class="fa-solid fa-check-circle"></i> Divisi Quality Control</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-drafting-compass"></i></div>
+                            <div class="timeline-content">
+                                <h4>PT. INKA Multi Solusi</h4>
+                                <span><i class="fa-solid fa-pen-ruler"></i> Divisi Design and Engineering</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-industry"></i></div>
+                            <div class="timeline-content">
+                                <h4>PT. Bintang Matrix Indonesia</h4>
+                                <span><i class="fa-solid fa-tools"></i> Operator & Maintenance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagas.reza@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

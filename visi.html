@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Guru yang Dituju | Bagas Reza Purwaka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--bg-white);
+            font-size: 2.5rem;
+        }
+
+        .mission-box {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-box i {
+            position: absolute;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.05);
+            right: -2rem;
+            bottom: -2rem;
+        }
+
+        .mission-box h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission-box p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Roadmap Styles */
+        .roadmap {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin: 4rem 0;
+            padding-top: 2rem;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(11, 25, 44, 0.1);
+            z-index: 0;
+        }
+
+        .roadmap-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-white);
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.2rem;
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .roadmap-step:hover .step-icon {
+            transform: scale(1.1);
+            background: var(--primary);
+            color: var(--bg-white);
+        }
+
+        .roadmap-step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .roadmap-step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Skill Cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-card h3 i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .roadmap {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .roadmap::before {
+                top: 0;
+                bottom: 0;
+                left: 25px;
+                width: 4px;
+                height: auto;
+            }
+            .roadmap-step {
+                display: flex;
+                text-align: left;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .step-icon {
+                margin: 0;
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                                <li><a href="analisis.html">Artefak</a></li>
+                <li class="separator">|</li>
+                <li class="separator">|</li>
+                <li><a href="analisis_artefak.html">Analisis</a></li>
+                <li><a href="penilaian.html">Penilaian</a></li>
+                <li><a href="visi.html" class="active">Model Guru</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container fade-in">
+            <h1>Model Guru yang Dituju</h1>
+            <p style="color: var(--accent); font-size: 1.2rem; margin-top: 1rem;">Visi Masa Depan Sebagai Pendidik Profesional</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            
+            <!-- Mission Box -->
+            <div class="mission-box fade-in">
+                <i class="fa-solid fa-compass"></i>
+                <h2>Misi Pendidik</h2>
+                <p>"Menjadi katalisator perubahan dalam pendidikan vokasi yang menjembatani kesenjangan antara dunia akademik dan kebutuhan industri 4.0, melalui pembelajaran yang inovatif, inklusif, dan berpusat pada pengembangan karakter siswa."</p>
+            </div>
+
+            <!-- Growth Journey / Roadmap -->
+            <h2 class="section-title fade-in" style="margin-top: 5rem;">Peta Jalan Pengembangan Diri</h2>
+            <div class="roadmap fade-in">
+                <div class="roadmap-step">
+                    <div class="step-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h4>1. Kompetensi Pedagogik</h4>
+                    <p>Menguasai teori belajar, psikologi perkembangan, dan merancang perangkat ajar yang berdiferensiasi.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-icon"><i class="fa-solid fa-hammer"></i></div>
+                    <h4>2. Kompetensi Teknis</h4>
+                    <p>Memperbarui keahlian praktikal mesin CNC, CAD/CAM, dan teknologi manufaktur terbaru.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h4>3. Karakter dan Kepribadian Guru</h4>
+                    <p>Membangun sikap disiplin, tanggung jawab, komunikatif, dan adaptif sehingga mampu menjadi teladan positif bagi peserta didik.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-icon"><i class="fa-solid fa-star"></i></div>
+                    <h4>4. Kolaborasi dan Kepemimpinan</h4>
+                    <p>Menjadi agen transformasi di sekolah, berbagi praktik baik, dan menginspirasi rekan sejawat.</p>
+                </div>
+            </div>
+
+            <!-- Skill Cards -->
+            <h2 class="section-title fade-in" style="margin-top: 5rem;">Karakter & Kompetensi Ideal</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <h3><i class="fa-solid fa-brain"></i> Adaptif & Inovatif</h3>
+                    <p>Guru profesional tidak boleh tertinggal zaman. Harus mampu mengintegrasikan teknologi baru seperti VR/AR dalam simulasi pemesinan sebelum siswa masuk ke bengkel nyata.</p>
+                </div>
+                <div class="skill-card fade-in" style="transition-delay: 0.1s;">
+                    <h3><i class="fa-solid fa-heart-pulse"></i> Empatik & Inklusif</h3>
+                    <p>Memahami bahwa setiap siswa memiliki latar belakang dan gaya belajar berbeda. Guru ideal adalah pendengar yang baik dan fasilitator yang sabar.</p>
+                </div>
+                <div class="skill-card fade-in" style="transition-delay: 0.2s;">
+                    <h3><i class="fa-solid fa-industry"></i> Berwawasan Industri</h3>
+                    <p>Memiliki pemahaman mendalam tentang Standar Operasional Prosedur (SOP) dan Keselamatan Kerja (K3) standar industri untuk diterapkan secara ketat di bengkel sekolah.</p>
+                </div>
+                <div class="skill-card fade-in" style="transition-delay: 0.3s;">
+                    <h3><i class="fa-solid fa-chalkboard-user"></i> Lifelong Learner</h3>
+                    <p>Memiliki komitmen untuk terus belajar sepanjang hayat (long-life education), mengikuti sertifikasi kompetensi keahlian, dan mengevaluasi diri secara berkala.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagasraiza@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

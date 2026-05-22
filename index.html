@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio | Bagas Reza Purwaka</title>
+    <meta name="description" content="E-Portfolio Digital Profesional Bagas Reza Purwaka, Calon Guru Vokasional Teknik Mesin">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific Styles for Index */
+        .hero-section {
+            height: calc(100vh - 80px); /* Adjust for navbar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(rgba(11, 25, 44, 0.8), rgba(11, 25, 44, 0.9)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            color: var(--text-light);
+            text-align: center;
+            overflow: hidden;
+            margin-top: -80px; /* Pull up to hide behind transparent nav initially, or adjust layout */
+            padding-top: 80px;
+        }
+
+        .hero-layout {
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1.2;
+            text-align: left;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: 0.85;
+            filter: brightness(0.8) contrast(1.05) saturate(0.9);
+            /* Geser fokus mask kembali ke 65% dan naikkan posisi gambar sedikit agar tidak menyentuh garis bawah */
+            -webkit-mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 85%);
+            mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 85%);
+            transform: translateY(-30px);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-image-container img:hover {
+            opacity: 0.95;
+            transform: translateY(-30px) scale(1.02);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 95%);
+            mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 95%);
+        }
+
+        .hero-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+        }
+
+        .hero-status {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .hero-status .char-span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-15px);
+            filter: blur(2px);
+            transition: none;
+        }
+
+        .hero-status.start-animation .char-span {
+            animation: charFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes charFadeIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+        
+        .hero-origin {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+        }
+
+        .hero-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: 0;
+            line-height: 1.8;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            text-align: left;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+        }
+
+        /* Particles/Decorations */
+        .decor-gear {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 20rem;
+            z-index: 1;
+            animation: spin 30s linear infinite;
+        }
+
+        .gear-1 { top: -50px; right: -50px; }
+        .gear-2 { bottom: -100px; left: -100px; font-size: 30rem; animation-direction: reverse; }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 992px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+                padding-top: 4rem;
+            }
+            .hero-text {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-origin, .hero-buttons { justify-content: center; }
+            .hero-quote { 
+                margin: 0 auto 2rem; 
+                text-align: center; 
+                border-left: none; 
+                border-top: 3px solid var(--accent); 
+                padding-top: 1rem; 
+                padding-left: 0; 
+            }
+            .hero-image-container img {
+                max-width: 400px;
+                transform: translateY(-15px);
+                -webkit-mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 85%);
+                mask-image: radial-gradient(ellipse at 50% 65%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 85%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-name { font-size: 2.5rem; }
+            .hero-status { font-size: 1.2rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="profil.html">Profil</a></li>
+    <li><a href="analisis.html">Artefak</a></li>
+                     <li><a href="analisis_artefak.html">Analisis</a></li>
+                     <li><a href="penilaian.html">Penilaian</a></li>
+                     <li><a href="visi.html">Model Guru</a></li>
+</ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <i class="fa-solid fa-gear decor-gear gear-1"></i>
+        <i class="fa-solid fa-gear decor-gear gear-2"></i>
+        
+        <div class="container hero-layout fade-in">
+            <div class="hero-text">
+                <h1 class="hero-name">Bagas Reza Purwaka</h1>
+                <p class="hero-status">Mahasiswa PPG Prajabatan - Teknik Mesin</p>
+                <p class="hero-origin"><i class="fa-solid fa-location-dot"></i> Kebumen, Jawa Tengah</p>
+                
+                <div class="hero-quote">
+                    "Pendidikan bukan sekadar mengisi wadah yang kosong, melainkan menyalakan api keingintahuan untuk terus belajar dan berinovasi tanpa batas."
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="profil.html" class="btn btn-accent">Mulai Jelajahi <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    <a href="analisis.html" class="btn btn-outline" style="color: white; border-color: white;">Lihat Artefak</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <!-- Simpan foto yang Anda unggah sebagai assets/foto-hero.jpg -->
+                <img src="assets/foto-hero.jpeg" alt="Bagas Reza Purwaka">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagasraiza@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
