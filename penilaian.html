@@ -57,6 +57,19 @@
             color: var(--text-muted);
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .file-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.4s ease;
+        }
+
+        .file-preview:hover img {
+            transform: scale(1.1);
         }
 
         .file-preview:hover {
@@ -136,8 +149,6 @@
     <li><a href="index.html">Beranda</a></li>
     <li><a href="profil.html">Profil</a></li>
     <li><a href="analisis.html">Artefak</a></li>
-    <li class="separator">|</li>
-    <li class="separator">|</li>
     <li><a href="analisis_artefak.html">Analisis</a></li>
     <li><a href="penilaian.html">Penilaian</a></li>
     <li><a href="visi.html">Model Guru</a></li>
@@ -160,22 +171,20 @@
                 <div class="dash-card fade-in">
                     <h3><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Lampiran 7</h3>
                     <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">Instrumen Penilaian Penyusunan Perangkat Pembelajaran.</p>
-                    <div class="file-preview">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span>Klik untuk melihat / unggah PDF</span>
-                    </div>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
+                     <div class="file-preview">
+                         <img src="https://drive.google.com/thumbnail?id=1DPv3AHYt1hod0YKBqcrOVi4fPJg6ZOVg" alt="Preview Lampiran 7">
+                     </div>
+                    <a href="https://drive.google.com/uc?export=download&id=1DPv3AHYt1hod0YKBqcrOVi4fPJg6ZOVg" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
                 </div>
 
                 <!-- Lampiran 8 -->
                 <div class="dash-card fade-in" style="transition-delay: 0.2s;">
                     <h3><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Lampiran 8</h3>
                     <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">Instrumen Penilaian Praktik Mengajar (Observasi Guru Pamong & DPL).</p>
-                    <div class="file-preview">
-                        <i class="fa-solid fa-file-lines"></i>
-                        <span>Preview Data Penilaian</span>
-                    </div>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
+                     <div class="file-preview">
+                         <img src="https://drive.google.com/thumbnail?id=11ahOT5HWOyb3XBXaHUMUpePU_6sPRLRu" alt="Preview Lampiran 8">
+                     </div>
+                    <a href="https://drive.google.com/uc?export=download&id=11ahOT5HWOyb3XBXaHUMUpePU_6sPRLRu" class="btn btn-outline" style="width: 100%;">Download Dokumen</a>
                 </div>
             </div>
 

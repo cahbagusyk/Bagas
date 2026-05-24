@@ -7,11 +7,65 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .content-section { padding: 4rem 0; }
-        .content-section h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary); }
-        .content-section p { margin-bottom: 1rem; line-height: 1.6; }
-        .content-section ul { margin-left: 1.5rem; list-style-type: disc; }
-        .content-section li { margin-bottom: 0.5rem; }
+        .page-header { background: var(--primary); color: var(--text-light); padding: 8rem 0 4rem; text-align: center; }
+        .page-header h1 { color: var(--bg-white); font-size: 2.5rem; }
+        .content-section { padding: 4rem 0; background-color: var(--bg-main); }
+        .content-section h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
+        
+        .boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .box {
+            background: var(--bg-white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            border-top: 4px solid transparent;
+        }
+        
+        .box:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-top-color: var(--accent);
+        }
+        
+        .box-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(11, 25, 44, 0.05);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+        
+        .box:hover .box-icon {
+            background: var(--primary);
+            color: var(--text-light);
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .box p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -45,25 +99,31 @@
 
     <!-- Main Content -->
     <section class="section content-section">
-    <div class="container">
-
-        <div class="boxes">
-            <div class="box" style="background:var(--bg-white);padding:1.5rem;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
-    <h3>1. Kendala Penyusunan</h3>
-    <p>Kendala utama dalam penyusunan perangkat pembelajaran adalah merancang pembelajaran yang dapat meningkatkan motivasi belajar siswa sekaligus menyesuaikan kompetensi dengan kebutuhan industri. Selain itu, kemampuan awal siswa yang berbeda dalam memahami gambar teknik dan Autodesk Inventor membuat materi harus disusun bertahap, mulai dari pengenalan fitur dasar hingga praktik assembly.</p>
-</div>
-            <div class="box" style="background:var(--bg-white);padding:1.5rem;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+        <div class="container">
+            <div class="boxes">
+            <div class="box fade-in">
+                <div class="box-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h3>1. Kendala Penyusunan</h3>
+                <p>Kendala utama dalam penyusunan perangkat pembelajaran adalah merancang pembelajaran yang dapat meningkatkan motivasi belajar siswa sekaligus menyesuaikan kompetensi dengan kebutuhan industri. Selain itu, kemampuan awal siswa yang berbeda dalam memahami gambar teknik dan Autodesk Inventor membuat materi harus disusun bertahap, mulai dari pengenalan fitur dasar hingga praktik assembly.</p>
+            </div>
+            
+            <div class="box fade-in" style="transition-delay: 0.1s;">
+                <div class="box-icon"><i class="fa-solid fa-lightbulb"></i></div>
                 <h3>2. Konsep Pedagogi</h3>
                 <p>Perangkat pembelajaran menggunakan pendekatan <em>student centered learning</em> dengan guru sebagai fasilitator. Pembelajaran juga menerapkan konsep <em>Deep Learning</em> yang bermakna, menggembirakan, dan berkesadaran, dipadukan dengan Sistem Among Ki Hajar Dewantara. Model PBL dan PjBL digunakan agar siswa lebih aktif, mampu memecahkan masalah, serta mendapatkan pengalaman praktik yang sesuai dengan dunia industri.</p>
-                </div>
-            <div class="box" style="background:var(--bg-white);padding:1.5rem;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+            </div>
+            
+            <div class="box fade-in" style="transition-delay: 0.2s;">
+                <div class="box-icon"><i class="fa-solid fa-chart-line"></i></div>
                 <h3>3. Faktor Keberhasilan</h3>
                 <p>Keberhasilan pembelajaran didukung oleh penggunaan software yang relevan dengan industri, materi yang disusun secara sistematis, serta penerapan asesmen diagnostik dan formatif untuk memantau perkembangan siswa. Di samping itu, penggunaan metode praktik langsung, demonstrasi, dan pendampingan selama pembelajaran juga menjadi faktor penting dalam meningkatkan keterlibatan dan motivasi siswa di kelas.</p>
             </div>
-            <div class="box" style="background:var(--bg-white);padding:1.5rem;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+            
+            <div class="box fade-in" style="transition-delay: 0.3s;">
+                <div class="box-icon"><i class="fa-solid fa-users-gear"></i></div>
                 <h3>4. Penyesuaian untuk Kelas Berbeda</h3>
                 <p>Pada kelas dengan kemampuan dasar rendah, guru dapat memberikan proyek yang lebih sederhana dan pendampingan lebih intensif. Sedangkan pada kelas yang lebih aktif, guru dapat memberikan tantangan tambahan berupa proyek desain yang lebih kompleks agar kemampuan siswa berkembang lebih optimal.</p>
-                </div>
+            </div>
         </div>
     </div>
 </section>
