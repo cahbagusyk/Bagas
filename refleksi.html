@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portofolio 2 | Bagas Reza Purwaka</title>
+    <meta name="description" content="E-Portofolio 2: Refleksi Akhir PPL Terbimbing & Filosofi Mengajar oleh Bagas Reza Purwaka">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific Styles for E-Portfolio 2 */
+        body {
+            background-color: #050c16; /* Matches premium dark theme of chooser */
+            color: var(--text-light);
+        }
+
+        .navbar {
+            background-color: rgba(5, 12, 22, 0.85) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar .logo {
+            color: white !important;
+        }
+
+        .navbar .nav-links a {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--accent) !important;
+        }
+
+        .navbar .nav-links a::after {
+            background-color: var(--accent);
+        }
+
+        .header-banner-premium {
+            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 50%), 
+                        radial-gradient(circle at 20% 80%, rgba(26, 54, 93, 0.4), transparent 60%),
+                        linear-gradient(180deg, #050c16 0%, #0b192c 100%);
+            position: relative;
+            padding: 5rem 0 3rem;
+            overflow: hidden;
+        }
+
+        /* Decorative glowing lights/circuits */
+        .header-banner-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0),
+                radial-gradient(rgba(212, 175, 55, 0.02) 2px, transparent 0);
+            background-size: 40px 40px, 80px 80px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .banner-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 992px) {
+            .banner-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Profile Card on Left */
+        .profile-card-premium {
+            background: rgba(11, 25, 44, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .profile-avatar-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(212, 175, 55, 0.1) 100%);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0b192c;
+            display: block;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-title {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .badge-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .badge-item i {
+            color: var(--accent);
+        }
+
+        .badge-item:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .social-links-premium {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links-premium a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links-premium a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Right Content Block */
+        .banner-main-content {
+            text-align: left;
+        }
+
+        .banner-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .banner-title {
+            color: white;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        @media (max-width: 768px) {
+            .banner-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        .banner-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .quote-box-premium {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem 2rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: 2.5rem;
+            position: relative;
+            max-width: 800px;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .banner-actions {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-accent-premium {
+            background: var(--accent);
+            color: var(--primary) !important;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent-premium:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.35);
+        }
+
+        .btn-outline-premium {
+            background: transparent;
+            color: white !important;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-premium:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Bottom Menu Option Cards Link */
+        .section-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem auto 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card-link {
+            background: rgba(11, 25, 44, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .section-card-link::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-card-link:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: rgba(11, 25, 44, 0.7);
+        }
+
+        .section-card-link:hover::after {
+            opacity: 1;
+        }
+
+        .scl-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .scl-01 .scl-icon {
+            background: rgba(0, 180, 216, 0.1);
+            color: #00b4d8;
+        }
+
+        .scl-02 .scl-icon {
+            background: rgba(157, 78, 221, 0.1);
+            color: #9d4edd;
+        }
+
+        .scl-info {
+            flex-grow: 1;
+        }
+
+        .scl-num-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .section-card-link h3 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-card-link p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .scl-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.08);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .section-card-link:hover .scl-number {
+            color: rgba(212, 175, 55, 0.18);
+            transform: scale(1.1);
+        }
+
+        /* General Section Styling Adaptations */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header-left h2 {
+            color: white;
+        }
+
+        .interactive-card {
+            background: rgba(11, 25, 44, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .interactive-card h3 {
+            color: white;
+        }
+
+        .pillar-card {
+            background: rgba(11, 25, 44, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-left: 4px solid var(--accent);
+        }
+
+        .pillar-card h3 {
+            color: white;
+        }
+
+        .pillar-icon {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--accent);
+        }
+
+        .pillar-card:hover .pillar-icon {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .step-badge {
+            background: #0b192c;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .step-item h4 {
+            color: white;
+        }
+
+        /* Intro Box adjustment */
+        .intro-box {
+            background: rgba(11, 25, 44, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 4px solid var(--accent);
+            color: white;
+        }
+
+        .intro-box p {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .card-tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .back-button {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* 3 Question Cards Grid Styles */
+        .refleksi-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .refleksi-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .refleksi-card-item {
+            background: rgba(11, 25, 44, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .refleksi-card-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .refleksi-card-item.active {
+            border-color: var(--accent);
+            background: rgba(11, 25, 44, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .refleksi-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .refleksi-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .refleksi-card-item:hover .refleksi-card-icon {
+            transform: scale(1.1);
+            border-color: var(--accent);
+        }
+
+        .badge-01 {
+            background: rgba(0, 180, 216, 0.15);
+            color: #00b4d8;
+        }
+        .badge-02 {
+            background: rgba(243, 156, 18, 0.15);
+            color: #f39c12;
+        }
+        .badge-03 {
+            background: rgba(157, 78, 221, 0.15);
+            color: #9d4edd;
+        }
+
+        .refleksi-card-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .refleksi-card-item.active .refleksi-card-number {
+            color: rgba(212, 175, 55, 0.2);
+        }
+
+        .refleksi-card-item h3 {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .refleksi-card-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .refleksi-card-link-text {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .refleksi-card-item:hover .refleksi-card-link-text i {
+            transform: translateX(5px);
+        }
+
+        /* Dynamic Content Panel Styles */
+        .refleksi-dynamic-content {
+            background: rgba(11, 25, 44, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            min-height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .refleksi-dynamic-content {
+                padding: 1.5rem;
+            }
+        }
+
+        .refleksi-tab-panel {
+            display: none;
+            animation: panelFadeIn 0.5s ease forwards;
+        }
+
+        .refleksi-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sub Steps (Observasi, Asistensi, Praktik, Evaluasi) */
+        .sub-step-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .sub-step-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sub-step-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sub-step-btn {
+            background: rgba(11, 25, 44, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .sub-step-btn:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            background: rgba(11, 25, 44, 0.6);
+        }
+
+        .sub-step-btn.active {
+            border-color: var(--accent);
+            background: rgba(11, 25, 44, 0.85);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sub-step-num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'Outfit', sans-serif;
+            opacity: 0.6;
+        }
+
+        .sub-step-btn.active .sub-step-num {
+            opacity: 1;
+        }
+
+        .sub-step-info h5 {
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .sub-step-info p {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.75rem;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .sub-step-btn.active .sub-step-info p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Sub step content displays */
+        /* Modal Popup System */
+        .refleksi-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: rgba(5, 12, 22, 0.85); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .refleksi-modal-content {
+            background: #0b192c;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.15);
+            position: relative;
+            animation: modalSlideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            padding: 3rem 2.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .refleksi-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .refleksi-modal-close:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Hide the dynamic content area by default since it will be displayed in modal */
+        .refleksi-dynamic-content {
+            background: transparent;
+            border: none;
+            padding: 0;
+            min-height: auto;
+        }
+
+        /* =============================================
+           FILOSOFI MENGAJAR — New Premium Styles
+        ============================================= */
+
+        /* 3-column pillars grid */
+        .filosofi-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .filosofi-pillars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Individual pillar card */
+        .filosofi-pillar-card {
+            background: rgba(11, 25, 44, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filosofi-pillar-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filosofi-pillar-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(11, 25, 44, 0.7);
+        }
+
+        .filosofi-pillar-card:hover::before {
+            opacity: 1;
+        }
+
+        .fp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .fp-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-sm);
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .filosofi-pillar-card:hover .fp-icon-wrap {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .fp-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: 'Outfit', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .filosofi-pillar-card:hover .fp-num {
+            color: rgba(212, 175, 55, 0.15);
+        }
+
+        .fp-title {
+            color: white !important;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 !important;
+        }
+
+        .fp-desc {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.92rem;
+            line-height: 1.75;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .fp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .fp-tags span {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.3s ease;
+        }
+
+        .filosofi-pillar-card:hover .fp-tags span {
+            border-color: rgba(212, 175, 55, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 4 Core Values Grid */
+        .nilai-inti-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .nilai-inti-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nilai-inti-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .nilai-item {
+            background: rgba(11, 25, 44, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.35s ease;
+        }
+
+        .nilai-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .nilai-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin: 0 auto 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nilai-item:hover .nilai-icon {
+            transform: scale(1.1);
+        }
+
+        .nilai-item h4 {
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .nilai-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Approach Items */
+        .approach-item {
+            background: rgba(11, 25, 44, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .approach-item:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            background: rgba(11, 25, 44, 0.55);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="refleksi.html">Beranda</a></li>
+                <li><a href="#refleksi-ppl">Refleksi PPL</a></li>
+                <li><a href="#filosofi-mengajar">Filosofi Mengajar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <header class="header-banner-premium">
+        <div class="container banner-grid fade-in">
+            
+            <!-- Left Card: Profile Card -->
+            <div class="profile-card-premium">
+                <div class="profile-avatar-container">
+                    <img src="assets/foto-hero.jpeg" alt="Bagas Reza Purwaka" class="profile-avatar">
+                </div>
+                <h2 class="profile-name">Bagas Reza Purwaka</h2>
+                <p class="profile-title">Calon Guru Teknik Mesin</p>
+                <div class="badge-container">
+                    <span class="badge-item"><i class="fa-solid fa-graduation-cap"></i> PPG Prajabatan 2026</span>
+                    <span class="badge-item"><i class="fa-solid fa-school"></i> SMK Muhammadiyah 3 Yogyakarta</span>
+                </div>
+                <div class="social-links-premium">
+                    <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="banner-main-content">
+                <span class="banner-tag"><i class="fa-solid fa-book-bookmark"></i> E-Portfolio 2 &mdash; UAS</span>
+                <h1 class="banner-title">Refleksi Akhir &amp;<br>Filosofi Mengajar</h1>
+                <p class="banner-description">
+                    Dokumentasi refleksi perjalanan Praktik Pengalaman Lapangan Terbimbing pada kompetensi keahlian Teknik Mesin di SMK Muhammadiyah 3 Yogyakarta, beserta prinsip-prinsip yang mendasari praktik pengajaran saya sebagai calon guru profesional.
+                </p>
+                
+                <div class="quote-box-premium">
+                    <span class="quote-icon"><i class="fa-solid fa-quote-left"></i></span>
+                    <p class="quote-text">
+                        "Mendidik bukanlah sekadar mentransfer ilmu, melainkan tentang menyalakan pelita hasrat belajar yang akan terus menyala sepanjang hayat."
+                    </p>
+                </div>
+                
+                <div class="banner-actions">
+                    <a href="#refleksi-ppl" class="btn btn-accent-premium"><i class="fa-solid fa-file-invoice"></i> Lihat Refleksi</a>
+                    <a href="#filosofi-mengajar" class="btn btn-outline-premium"><i class="fa-solid fa-lightbulb"></i> Filosofi Mengajar</a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <!-- Section Cards Link Grid -->
+    <div class="section-cards-grid container fade-in">
+        <a href="#refleksi-ppl" class="section-card-link scl-01">
+            <div class="scl-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+            <div class="scl-info">
+                <span class="scl-num-label">SECTION 01</span>
+                <h3>Refleksi Akhir PPL Terbimbing</h3>
+                <p>3 pertanyaan refleksi mendalam tentang pembelajaran, tantangan &amp; umpan balik selama PPL.</p>
+            </div>
+            <span class="scl-number">3</span>
+        </a>
+        <a href="#filosofi-mengajar" class="section-card-link scl-02">
+            <div class="scl-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="scl-info">
+                <span class="scl-num-label">SECTION 02</span>
+                <h3>Filosofi Mengajar</h3>
+                <p>Prinsip pembelajaran bermakna, fasilitator scaffolder, &amp; karakter profesional dengan 4 nilai inti.</p>
+            </div>
+            <span class="scl-number">3+4</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+
+
+        <!-- Section 1: Refleksi Akhir PPL Terbimbing -->
+        <section id="refleksi-ppl" class="section" style="padding-top: 2rem;">
+            
+            <!-- Section Header from Screenshot -->
+            <div class="section-title text-center fade-in" style="margin-bottom: 3rem;">
+                <span class="banner-tag" style="margin-bottom: 1rem;"><i class="fa-solid fa-clipboard-check"></i> Refleksi PPL Terbimbing</span>
+                <h2 style="color: white; font-size: 2.8rem; font-weight: 800; margin-bottom: 0.8rem;">Refleksi Akhir PPL Terbimbing</h2>
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem;">Klik kartu pertanyaan di bawah untuk melihat refleksi mendalam</p>
+            </div>
+
+            <!-- Grid of 3 Question Cards -->
+            <div class="refleksi-cards-grid fade-in">
+                
+                <!-- Card 01 -->
+                <div id="refleksi-card-1" class="refleksi-card-item active" onclick="switchRefleksiTab(1)">
+                    <div class="refleksi-card-header">
+                        <div class="refleksi-card-icon badge-01">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <span class="refleksi-card-number">01</span>
+                    </div>
+                    <h3>Apa yang Telah Saya Pelajari?</h3>
+                    <p>Apa yang telah mahasiswa pelajari sebagai peserta PPG calon guru selama tahapan PPL Terbimbing dari awal hingga akhir?</p>
+                    <span class="refleksi-card-link-text">Lihat Refleksi <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Card 02 -->
+                <div id="refleksi-card-2" class="refleksi-card-item" onclick="switchRefleksiTab(2)">
+                    <div class="refleksi-card-header">
+                        <div class="refleksi-card-icon badge-02">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <span class="refleksi-card-number">02</span>
+                    </div>
+                    <h3>Pengalaman Menantang & Solusi</h3>
+                    <p>Apakah terdapat pengalaman yang menantang dan bagaimana solusi dari permasalahan tersebut?</p>
+                    <span class="refleksi-card-link-text">Lihat Refleksi <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+
+                <!-- Card 03 -->
+                <div id="refleksi-card-3" class="refleksi-card-item" onclick="switchRefleksiTab(3)">
+                    <div class="refleksi-card-header">
+                        <div class="refleksi-card-icon badge-03">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <span class="refleksi-card-number">03</span>
+                    </div>
+                    <h3>Umpan Balik & Saran Konstruktif</h3>
+                    <p>Apakah umpan balik atau saran konstruktif yang diberikan kepada mahasiswa dalam diskusi refleksi akhir?</p>
+                    <span class="refleksi-card-link-text">Lihat Refleksi <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+
+            </div>
+
+            <!-- Modal Popup Container -->
+            <div id="refleksi-modal" class="refleksi-modal">
+                <div class="refleksi-modal-content">
+                    <span class="refleksi-modal-close" onclick="closeRefleksiModal()"><i class="fa-solid fa-xmark"></i></span>
+                    <div id="refleksi-modal-body">
+                        
+                        <!-- Dynamic Content Area -->
+                        <div class="refleksi-dynamic-content" style="margin-top: 0;">
+                            <!-- TAB 1: APA YANG TELAH SAYA PELAJARI -->
+                            <div id="refleksi-tab-content-1" class="refleksi-tab-panel active">
+                    <div class="panel-header-desc" style="background: rgba(11, 25, 44, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: var(--radius-md); margin-bottom: 2.5rem;">
+                        <h4 style="color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Pertanyaan 1</h4>
+                        <h2 style="color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Apa yang Telah Saya Pelajari Sebagai Peserta PPG Calon Guru</h2>
+                        <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; line-height: 1.7; margin: 0;">Selama menjalani tahapan PPL Terbimbing dari awal hingga akhir, saya memperoleh banyak pengalaman dan pembelajaran yang sangat berharga sebagai peserta PPG calon guru. Setiap tahapan memberikan pemahaman baru mengenai tugas dan tanggung jawab seorang pendidik profesional, khususnya dalam pembelajaran praktik di SMK.</p>
+                    </div>
+
+                    <!-- Sub-navigation buttons (from screenshot) -->
+                    <div class="sub-step-grid">
+                        <div id="sub-step-btn-1" class="sub-step-btn active" onclick="switchSubStep(1)">
+                            <div class="sub-step-num">01</div>
+                            <div class="sub-step-info">
+                                <h5>Observasi</h5>
+                                <p>Mengenali karakter, gaya belajar, dan kebutuhan peserta didik.</p>
+                            </div>
+                        </div>
+                        <div id="sub-step-btn-2" class="sub-step-btn" onclick="switchSubStep(2)">
+                            <div class="sub-step-num">02</div>
+                            <div class="sub-step-info">
+                                <h5>Asistensi</h5>
+                                <p>Belajar pengelolaan kelas Gambar Teknik Manufaktur, pendampingan pengerjaan job, dan demonstrasi penggunaan Autodesk Inventor.</p>
+                            </div>
+                        </div>
+                        <div id="sub-step-btn-3" class="sub-step-btn" onclick="switchSubStep(3)">
+                            <div class="sub-step-num">03</div>
+                            <div class="sub-step-info">
+                                <h5>Praktik</h5>
+                                <p>Menerapkan pembelajaran terbimbing pada materi assembly drawing dan mengelola alur kerja siswa di lab CAD.</p>
+                            </div>
+                        </div>
+                        <div id="sub-step-btn-4" class="sub-step-btn" onclick="switchSubStep(4)">
+                            <div class="sub-step-num">04</div>
+                            <div class="sub-step-info">
+                                <h5>Evaluasi</h5>
+                                <p>Menerima umpan balik untuk perbaikan PPL Mandiri.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub-content displays -->
+                    <div class="sub-step-content-display" style="margin-top: 2rem;">
+                        <!-- Sub step 1 -->
+                        <div id="sub-step-content-1" class="sub-step-pane active">
+                            <div class="pane-inner" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md); display: flex; gap: 2rem; align-items: flex-start;">
+                                <div class="pane-icon" style="font-size: 2.5rem; color: var(--accent); background: rgba(255, 255, 255, 0.03); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-eye"></i></div>
+                                <div class="pane-text">
+                                    <h3 style="color: white; margin-bottom: 0.8rem; font-weight: 700;">1. Tahap Observasi</h3>
+                                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">Pada tahap observasi, saya belajar memahami kondisi kelas XI TP secara menyeluruh, baik dari segi karakteristik siswa maupun proses pembelajaran yang berlangsung di kelas dan laboratorium CAD. Saya menyadari bahwa setiap peserta didik memiliki kemampuan, minat, dan gaya belajar yang berbeda-beda. Saat praktik Gambar Teknik Manufaktur, terdapat siswa yang cepat memahami penggunaan Autodesk Inventor, namun ada juga yang membutuhkan pendampingan lebih intensif. Dari tahap ini, saya belajar pentingnya mengenali kebutuhan belajar siswa sebelum melaksanakan pembelajaran.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sub step 2 -->
+                        <div id="sub-step-content-2" class="sub-step-pane">
+                            <div class="pane-inner" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md); display: flex; gap: 2rem; align-items: flex-start;">
+                                <div class="pane-icon" style="font-size: 2.5rem; color: var(--accent); background: rgba(255, 255, 255, 0.03); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-hands-holding"></i></div>
+                                <div class="pane-text">
+                                    <h3 style="color: white; margin-bottom: 0.8rem; font-weight: 700;">2. Tahap Asistensi</h3>
+                                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">Pada tahap asistensi, saya belajar bagaimana guru pamong mengelola pembelajaran secara efektif and terstruktur. Guru pamong tidak hanya menjelaskan materi, tetapi juga aktif mendampingi siswa saat membaca jobsheet, mengoperasikan Autodesk Inventor, dan menyelesaikan tugas praktik. Saya memahami pentingnya komunikasi yang jelas, pengelolaan kelas yang baik, serta kemampuan memberikan arahan secara bertahap agar siswa dapat mengikuti pembelajaran dengan optimal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sub step 3 -->
+                        <div id="sub-step-content-3" class="sub-step-pane">
+                            <div class="pane-inner" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md); display: flex; gap: 2rem; align-items: flex-start;">
+                                <div class="pane-icon" style="font-size: 2.5rem; color: var(--accent); background: rgba(255, 255, 255, 0.03); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-chalkboard-user"></i></div>
+                                <div class="pane-text">
+                                    <h3 style="color: white; margin-bottom: 0.8rem; font-weight: 700;">3. Tahap Praktik Terbimbing</h3>
+                                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">Pada tahap praktik terbimbing, saya mulai mengimplementasikan modul ajar berbasis Deep Learning yang telah disusun pada materi Pembuatan Part 3D. Saya belajar bagaimana mengelola pembelajaran mulai dari kegiatan pembukaan, penyampaian materi, demonstrasi software, hingga praktik langsung di laboratorium CAD. Dalam tahap ini saya menyadari bahwa manajemen waktu menjadi hal yang sangat penting agar seluruh rangkaian pembelajaran seperti RPP, LKM, dan praktik dapat terlaksana secara utuh dan sesuai tujuan pembelajaran.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sub step 4 -->
+                        <div id="sub-step-content-4" class="sub-step-pane">
+                            <div class="pane-inner" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md); display: flex; gap: 2rem; align-items: flex-start;">
+                                <div class="pane-icon" style="font-size: 2.5rem; color: var(--accent); background: rgba(255, 255, 255, 0.03); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                                <div class="pane-text">
+                                    <h3 style="color: white; margin-bottom: 0.8rem; font-weight: 700;">4. Tahap Refleksi & Evaluasi</h3>
+                                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">Pada tahap refleksi dan evaluasi, saya memahami bahwa proses menjadi guru profesional memerlukan refleksi yang berkelanjutan. Setiap pertemuan mengajar memberikan pengalaman baru yang dapat dijadikan bahan evaluasi untuk memperbaiki pembelajaran berikutnya. Saya belajar bahwa refleksi membantu guru mengetahui kelebihan dan kekurangan dalam proses mengajar sehingga dapat terus berkembang menjadi pendidik yang lebih baik, adaptif, dan inovatif.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: PENGALAMAN MENANTANG & SOLUSI -->
+                <div id="refleksi-tab-content-2" class="refleksi-tab-panel">
+                    <div class="panel-header-desc" style="background: rgba(11, 25, 44, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: var(--radius-md); margin-bottom: 2.5rem;">
+                        <h4 style="color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Pertanyaan 2</h4>
+                        <h2 style="color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Pengalaman Menantang &amp; Solusi yang Diterapkan</h2>
+                        <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; line-height: 1.7; margin: 0;">Selama melaksanakan PPL Terbimbing, terdapat beberapa tantangan yang memberikan pengalaman berharga sekaligus menjadi pembelajaran penting dalam meningkatkan kompetensi mengajar.</p>
+                    </div>
+
+                    <div class="challenges-list" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <!-- Tantangan 1 -->
+                        <div class="challenge-item-card" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md);">
+                            <div class="cic-header" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <span class="cic-badge badge-red" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 0.3rem 1rem; border-radius: 40px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Tantangan 1</span>
+                                <h3 style="color: white; font-weight: 700; margin: 0;">Heterogenitas Kemampuan Siswa</h3>
+                            </div>
+                            <p class="cic-desc" style="color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 1.5rem;">Dalam satu kelas Gambar Teknik Manufaktur, terdapat perbedaan kemampuan yang cukup signifikan antara siswa yang sudah terbiasa menggunakan Autodesk Inventor dan siswa yang masih kesulitan memahami dasar gambar teknik maupun penggunaan tools pada software.</p>
+                            <div class="cic-solution-box" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-lightbulb"></i> Solusi:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin: 0;">Untuk mengatasi hal tersebut, diterapkan strategi pembelajaran diferensiasi melalui jobsheet bertingkat yang dibedakan menjadi level basic, intermediate, dan advanced. Selain itu, diterapkan juga metode peer tutoring, yaitu siswa yang lebih memahami materi membantu temannya yang masih mengalami kesulitan sehingga proses belajar menjadi lebih efektif dan kolaboratif.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tantangan 2 -->
+                        <div class="challenge-item-card" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md);">
+                            <div class="cic-header" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <span class="cic-badge badge-red" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 0.3rem 1rem; border-radius: 40px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Tantangan 2</span>
+                                <h3 style="color: white; font-weight: 700; margin: 0;">Keterbatasan Waktu di Lab CAD</h3>
+                            </div>
+                            <p class="cic-desc" style="color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 1.5rem;">Waktu pembelajaran di laboratorium CAD yang terbatas sering kali menjadi kendala dalam menyelesaikan seluruh rangkaian pembelajaran, mulai dari penyampaian materi, demonstrasi penggunaan software, hingga praktik assembly drawing secara mandiri.</p>
+                            <div class="cic-solution-box" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-lightbulb"></i> Solusi:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin: 0;">Solusi yang diterapkan adalah mengoptimalkan waktu pembelajaran dengan memanfaatkan video demonstrasi sebelum pembelajaran berlangsung melalui pendekatan flipped learning. Selain itu, dibuat SOP penggunaan tools Autodesk Inventor secara jelas agar siswa dapat lebih cepat memahami langkah kerja saat praktik berlangsung.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tantangan 3 -->
+                        <div class="challenge-item-card" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem; border-radius: var(--radius-md);">
+                            <div class="cic-header" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <span class="cic-badge badge-red" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 0.3rem 1rem; border-radius: 40px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Tantangan 3</span>
+                                <h3 style="color: white; font-weight: 700; margin: 0;">Menjaga Motivasi Siswa</h3>
+                            </div>
+                            <p class="cic-desc" style="color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 1.5rem;">Beberapa siswa mengalami penurunan motivasi ketika menghadapi kesalahan atau kegagalan saat praktik, seperti constraint assembly yang tidak sesuai atau hasil gambar yang belum memenuhi standar.</p>
+                            <div class="cic-solution-box" style="background: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-lightbulb"></i> Solusi:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin: 0;">Untuk menjaga motivasi siswa, dibangun budaya belajar yang positif dengan menanamkan pemahaman bahwa kegagalan merupakan bagian dari proses belajar. Selain itu, diberikan reward berbasis progress serta feedback konstruktif agar siswa tetap percaya diri dan termotivasi untuk terus mencoba memperbaiki hasil praktik mereka.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: UMPAN BALIK & SARAN KONSTRUKTIF -->
+                <div id="refleksi-tab-content-3" class="refleksi-tab-panel">
+                    <div class="panel-header-desc" style="background: rgba(11, 25, 44, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: var(--radius-md); margin-bottom: 2.5rem;">
+                        <h4 style="color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Pertanyaan 3</h4>
+                        <h2 style="color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem;">Umpan Balik &amp; Saran Konstruktif untuk PPL Mandiri</h2>
+                        <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; line-height: 1.7; margin: 0;">Berikut merupakan umpan balik dan saran konstruktif yang diperoleh selama diskusi refleksi akhir bersama guru pamong, dosen pembimbing, dan teman sejawat sebagai bahan pengembangan diri untuk pelaksanaan PPL Mandiri.</p>
+                    </div>
+
+                    <div class="feedback-grid-premium" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                        
+                        <!-- Guru Pamong -->
+                        <div class="feedback-card-item" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.2rem; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="fci-role" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                                    <div class="fci-avatar-icon" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;"><i class="fa-solid fa-user-tie"></i></div>
+                                    <div>
+                                        <h4 style="color: white; font-weight: 700; margin: 0;">Guru Pamong</h4>
+                                        <span style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; display: block; margin-top: 0.1rem;">SMK Muhammadiyah 3 Yogyakarta</span>
+                                    </div>
+                                </div>
+                                <div class="fci-quote" style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; position: relative;">
+                                    <p style="color: rgba(255, 255, 255, 0.9); font-style: italic; line-height: 1.6; margin: 0; font-size: 0.95rem;">“Kemampuan penguasaan materi sudah baik, namun perlu meningkatkan variasi metode penilaian. Coba eksplorasi asesmen autentik yang lebih beragam.”</p>
+                                </div>
+                            </div>
+                            <div class="fci-action-box" style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 1.2rem;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;"><i class="fa-solid fa-arrow-right-to-bracket"></i> Tindak Lanjut:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.75); line-height: 1.5; margin: 0; font-size: 0.85rem;">Sebagai tindak lanjut, saya akan mengembangkan instrumen asesmen autentik pada pembelajaran Gambar Teknik Manufaktur, seperti rubrik penilaian gambar kerja, penilaian assembly drawing, serta penilaian proses praktik siswa secara lebih komprehensif.</p>
+                            </div>
+                        </div>
+
+                        <!-- Dosen Pembimbing -->
+                        <div class="feedback-card-item" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.2rem; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="fci-role" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                                    <div class="fci-avatar-icon" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;"><i class="fa-solid fa-user-graduate"></i></div>
+                                    <div>
+                                        <h4 style="color: white; font-weight: 700; margin: 0;">Dosen Pembimbing</h4>
+                                        <span style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; display: block; margin-top: 0.1rem;">PPG Prajabatan</span>
+                                    </div>
+                                </div>
+                                <div class="fci-quote" style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; position: relative;">
+                                    <p style="color: rgba(255, 255, 255, 0.9); font-style: italic; line-height: 1.6; margin: 0; font-size: 0.95rem;">“Perencanaan pembelajaran sudah terstruktur. Tingkatkan kemampuan mengintegrasikan teknologi digital ke dalam pembelajaran praktik.”</p>
+                                </div>
+                            </div>
+                            <div class="fci-action-box" style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 1.2rem;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;"><i class="fa-solid fa-arrow-right-to-bracket"></i> Tindak Lanjut:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.75); line-height: 1.5; margin: 0; font-size: 0.85rem;">Untuk menindaklanjuti saran tersebut, saya akan mengembangkan media pembelajaran berbasis simulasi Autodesk Inventor serta memanfaatkan Learning Management System (LMS) sebagai sarana pengumpulan dan evaluasi hasil pekerjaan siswa.</p>
+                            </div>
+                        </div>
+
+                        <!-- Teman Sejawat -->
+                        <div class="feedback-card-item" style="background: rgba(11, 25, 44, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 2.2rem; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="fci-role" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                                    <div class="fci-avatar-icon" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;"><i class="fa-solid fa-users"></i></div>
+                                    <div>
+                                        <h4 style="color: white; font-weight: 700; margin: 0;">Teman Sejawat</h4>
+                                        <span style="color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; display: block; margin-top: 0.1rem;">Mahasiswa PPG Mesin</span>
+                                    </div>
+                                </div>
+                                <div class="fci-quote" style="background: rgba(255, 255, 255, 0.02); padding: 1.2rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; position: relative;">
+                                    <p style="color: rgba(255, 255, 255, 0.9); font-style: italic; line-height: 1.6; margin: 0; font-size: 0.95rem;">“Interaksi dengan siswa sudah natural. Coba lebih banyak memberikan kesempatan siswa untuk presentasi hasil kerja mereka.”</p>
+                                </div>
+                            </div>
+                            <div class="fci-action-box" style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 1.2rem;">
+                                <h5 style="color: var(--accent); font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;"><i class="fa-solid fa-arrow-right-to-bracket"></i> Tindak Lanjut:</h5>
+                                <p style="color: rgba(255, 255, 255, 0.75); line-height: 1.5; margin: 0; font-size: 0.85rem;">Sebagai tindak lanjut, saya akan menambahkan sesi presentasi hasil gambar kerja siswa dalam pembelajaran serta menyusun rubrik penilaian komunikasi teknis agar siswa lebih percaya diri dalam menyampaikan hasil pekerjaan mereka.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Filosofi Mengajar -->
+        <section id="filosofi-mengajar" class="section fade-in" style="border-top: 1px solid rgba(255, 255, 255, 0.08);">
+
+            <!-- Section Header -->
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="banner-tag" style="margin-bottom: 1.2rem; display: inline-flex;"><i class="fa-solid fa-lightbulb"></i> Filosofi Mengajar</span>
+                <h2 style="color: white; font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2;">Filosofi &amp; Prinsip Mengajar</h2>
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; max-width: 680px; margin: 0 auto; line-height: 1.7;">
+                    Keyakinan pedagogik yang mendasari setiap keputusan, tindakan, dan komitmen saya dalam mendidik peserta didik di sekolah vokasi.
+                </p>
+            </div>
+
+            <!-- Main Philosophy Statement -->
+            <div class="filosofi-statement-box fade-in" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(11, 25, 44, 0.6) 100%); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-lg); padding: 3.5rem; margin-bottom: 4rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -30px; right: -20px; font-size: 10rem; color: rgba(212, 175, 55, 0.04); font-family: Georgia, serif; line-height: 1; pointer-events: none; user-select: none;">&ldquo;</div>
+                <div style="display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; position: relative; z-index: 1;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); border: 2px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent); flex-shrink: 0;">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+                    <div>
+                        <p style="color: white; font-size: 1.35rem; font-style: italic; line-height: 1.7; margin-bottom: 1.2rem; font-weight: 500;">
+                            "Pendidikan tidak hanya berorientasi pada transfer pengetahuan, tetapi juga pada upaya menumbuhkan kesadaran, semangat, dan motivasi belajar yang terus berkembang sepanjang hayat."
+                        </p>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 40px; height: 2px; background: var(--accent);"></div>
+                            <span style="color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Bagas Reza Purwaka</span>
+                            <span style="color: rgba(255,255,255,0.4); font-size: 0.85rem;">— Calon Guru Teknik Mesin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Pillars Grid -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; text-align: center;">Tiga Pilar Utama Filosofi Mengajar</h3>
+                <div class="filosofi-pillars-grid">
+
+                    <!-- Pilar 1 -->
+                    <div class="filosofi-pillar-card">
+                        <div class="fp-top">
+                            <div class="fp-icon-wrap" style="background: rgba(0, 180, 216, 0.1); border-color: rgba(0, 180, 216, 0.3); color: #00b4d8;">
+                                <i class="fa-solid fa-hands-holding"></i>
+                            </div>
+                            <span class="fp-num">01</span>
+                        </div>
+                        <h3 class="fp-title">Sistem Among Ki Hajar Dewantara</h3>
+                        <p class="fp-desc">
+                            <p class="fp-desc">Saya meyakini bahwa setiap peserta didik membawa potensi uniknya sendiri. Dengan menerapkan prinsip <em>Ing Ngarso Sung Tulodo</em> (memberi teladan), <em>Ing Madyo Mangun Karso</em> (membangun semangat), dan <em>Tut Wuri Handayani</em> (mendorong dari belakang), saya berupaya menjadi pendidik yang menuntun kodrat alam dan zaman anak agar tumbuh secara utuh baik dalam kompetensi teknis maupun karakter mulia.</p>
+                        </p>
+                        <div class="fp-tags">
+                            <span><i class="fa-solid fa-seedling"></i> Teladan</span>
+                            <span><i class="fa-solid fa-fire-flame-curved"></i> Semangat</span>
+                            <span><i class="fa-solid fa-hand-holding-heart"></i> Dukungan</span>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 2 -->
+                    <div class="filosofi-pillar-card">
+                        <div class="fp-top">
+                            <div class="fp-icon-wrap" style="background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.3); color: var(--accent);">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <span class="fp-num">02</span>
+                        </div>
+                        <h3 class="fp-title">Pembelajaran Vokasional Berbasis Industri</h3>
+                        <p class="fp-desc">
+                            Pendidikan vokasi harus relevan dan berjalan beriringan dengan perkembangan dunia industri. Saya berkomitmen untuk menanamkan kompetensi teknis yang aktual, etos kerja profesional, kedisiplinan di bengkel/laboratorium, serta penguasaan teknologi terkini seperti CAD 3D, simulasi mesin, dan digitalisasi manufaktur agar lulusan siap memasuki dunia kerja yang kompetitif.
+                        </p>
+                        <div class="fp-tags">
+                            <span><i class="fa-solid fa-gears"></i> Kompetensi Teknis</span>
+                            <span><i class="fa-solid fa-briefcase"></i> Etos Kerja</span>
+                            <span><i class="fa-solid fa-microchip"></i> Teknologi</span>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 3 -->
+                    <div class="filosofi-pillar-card">
+                        <div class="fp-top">
+                            <div class="fp-icon-wrap" style="background: rgba(157, 78, 221, 0.1); border-color: rgba(157, 78, 221, 0.3); color: #9d4edd;">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </div>
+                            <span class="fp-num">03</span>
+                        </div>
+                        <h3 class="fp-title">Guru Sebagai Fasilitator &amp; Scaffolder</h3>
+                        <p class="fp-desc">
+                            Guru bukan satu-satunya sumber belajar, melainkan fasilitator yang membangun jembatan antara potensi peserta didik dan tujuan pembelajaran. Melalui pendekatan scaffolding, saya memberikan dukungan terstruktur yang secara bertahap dikurangi ketika kompetensi siswa meningkat, sehingga tercapai kemandirian belajar yang sejati dan bermakna.
+                        </p>
+                        <div class="fp-tags">
+                            <span><i class="fa-solid fa-bridge"></i> Scaffolding</span>
+                            <span><i class="fa-solid fa-users"></i> Kolaboratif</span>
+                            <span><i class="fa-solid fa-graduation-cap"></i> Mandiri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Nilai Inti -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; text-align: center;">Empat Nilai Inti Karakter Pendidik</h3>
+                <div class="nilai-inti-grid">
+                    <div class="nilai-item">
+                        <div class="nilai-icon" style="background: rgba(0, 180, 216, 0.1); color: #00b4d8;">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h4>Integritas</h4>
+                        <p>Konsisten antara kata dan tindakan, jujur dalam penilaian, dan bertanggung jawab atas setiap keputusan pembelajaran.</p>
+                    </div>
+                    <div class="nilai-item">
+                        <div class="nilai-icon" style="background: rgba(212, 175, 55, 0.1); color: var(--accent);">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4>Reflektif</h4>
+                        <p>Senantiasa merefleksikan praktik mengajar untuk terus tumbuh, berinovasi, dan memperbaiki kualitas pembelajaran secara berkelanjutan.</p>
+                    </div>
+                    <div class="nilai-item">
+                        <div class="nilai-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h4>Empati</h4>
+                        <p>Memahami keberagaman latar belakang, kebutuhan, dan tantangan yang dihadapi setiap peserta didik dengan penuh ketulusan.</p>
+                    </div>
+                    <div class="nilai-item">
+                        <div class="nilai-icon" style="background: rgba(157, 78, 221, 0.1); color: #9d4edd;">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <h4>Inovatif</h4>
+                        <p>Terus mengembangkan metode, media, dan strategi pembelajaran yang kreatif, relevan, dan adaptif terhadap perkembangan zaman.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pendekatan Pembelajaran -->
+            <div class="filosofi-approach-box fade-in" style="margin-bottom: 3rem;">
+                <h3 style="color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; text-align: center;">Pendekatan Pembelajaran yang Saya Yakini</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div class="approach-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: rgba(0, 180, 216, 0.1); color: #00b4d8; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-diagram-project"></i></div>
+                            <h4 style="color: white; font-size: 1rem; font-weight: 700; margin: 0;">Project-Based Learning (PjBL)</h4>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; margin: 0;">Siswa belajar melalui pengerjaan proyek nyata yang bermakna, mulai dari perencanaan, desain, hingga evaluasi produk akhir.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: rgba(212, 175, 55, 0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-layer-group"></i></div>
+                            <h4 style="color: white; font-size: 1rem; font-weight: 700; margin: 0;">Pembelajaran Berdiferensiasi</h4>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; margin: 0;">Menyesuaikan konten, proses, dan produk belajar sesuai kesiapan, minat, dan profil belajar masing-masing peserta didik.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: rgba(34, 197, 94, 0.1); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-circle-question"></i></div>
+                            <h4 style="color: white; font-size: 1rem; font-weight: 700; margin: 0;">Deep Learning</h4>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; margin: 0;">Mendorong siswa untuk berpikir kritis, reflektif, dan bermakna bukan sekadar menghafal tetapi benar-benar memahami dan menerapkan.</p>
+                    </div>
+                    <div class="approach-item">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: rgba(157, 78, 221, 0.1); color: #9d4edd; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-comments"></i></div>
+                            <h4 style="color: white; font-size: 1rem; font-weight: 700; margin: 0;">Asesmen Autentik &amp; Formatif</h4>
+                        </div>
+                        <p style="color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; margin: 0;">Menggunakan beragam instrumen penilaian yang mengukur kompetensi nyata, bukan hanya hasil akhir tetapi juga proses belajar siswa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Closing Komitmen Box -->
+            <div style="background: rgba(11, 25, 44, 0.5); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: var(--radius-lg); padding: 3rem; text-align: center;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); border: 2px solid rgba(212, 175, 55, 0.25); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--accent); margin: 0 auto 1.5rem;">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                </div>
+                <h3 style="color: white; font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem;">Komitmen Saya Sebagai Pendidik</h3>
+                <p style="color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.8; max-width: 700px; margin: 0 auto 2rem;">
+                    Saya berkomitmen untuk terus belajar, berkembang, dan berinovasi demi menjadi pendidik yang tidak hanya kompeten secara teknis, tetapi juga mampu menginspirasi generasi muda untuk menjadi insan yang berkarakter, berdaya saing, dan berkontribusi bagi kemajuan bangsa melalui kompetensi keahlian Teknik Mesin.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 2rem; font-weight: 900; color: var(--accent); font-family: 'Outfit', sans-serif;">4</span>
+                        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Nilai Inti</span>
+                    </div>
+                    <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 2rem; font-weight: 900; color: var(--accent); font-family: 'Outfit', sans-serif;">3</span>
+                        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Pilar Utama</span>
+                    </div>
+                    <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 2rem; font-weight: 900; color: var(--accent); font-family: 'Outfit', sans-serif;">4</span>
+                        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Pendekatan</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 6rem;">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-graduation-cap"></i> E-<span>Portofolio</span>
+                </div>
+                <div class="footer-info">
+                    <p><strong>Bagas Reza Purwaka</strong></p>
+                    <p>NIM: 2025084737</p>
+                    <p><i class="fa-solid fa-envelope"></i> bagasraiza@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bagas Reza Purwaka. Dibuat untuk pemenuhan tugas PPG Prajabatan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function switchRefleksiTab(tabIndex) {
+            // Toggle Active Cards
+            document.querySelectorAll('.refleksi-card-item').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById('refleksi-card-' + tabIndex).classList.add('active');
+
+            // Toggle Active Tab Content Panels
+            document.querySelectorAll('.refleksi-tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById('refleksi-tab-content-' + tabIndex).classList.add('active');
+
+            // Open Modal
+            const modal = document.getElementById('refleksi-modal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Disable background scrolling
+        }
+
+        function closeRefleksiModal() {
+            const modal = document.getElementById('refleksi-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore background scrolling
+        }
+
+        // Close modal when clicking outside the modal content area
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('refleksi-modal');
+            if (event.target === modal) {
+                closeRefleksiModal();
+            }
+        });
+
+        function switchSubStep(stepIndex) {
+            // Toggle Active Sub-step Buttons
+            document.querySelectorAll('.sub-step-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('sub-step-btn-' + stepIndex).classList.add('active');
+
+            // Toggle Active Sub-step Content Panes
+            document.querySelectorAll('.sub-step-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            document.getElementById('sub-step-content-' + stepIndex).classList.add('active');
+        }
+    </script>
+</body>
+</html>
